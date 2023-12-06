@@ -17,7 +17,8 @@ export class LayoutPageComponent implements OnInit {
       { label: 'Inicio', icon: 'pi pi-home', routerLink: '/' },
       { label: '¿Por qué debes elegirnos?', routerLink: '/home/por-que-my-gym' },
       { label: 'Ubicación y horario', icon: 'pi pi-map-marker', routerLink: '/home/ubicacion' },
-      { label: 'Apuntate', routerLink: '/auth/register' },
+      // { label: 'Apuntate', routerLink: '/auth/register' },
+      // { label: 'My Gym', routerLink: '/auth/login' },
     ];
   }
 }

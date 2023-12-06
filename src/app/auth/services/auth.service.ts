@@ -4,6 +4,7 @@ import { environment } from 'src/app/environments/environments';
 import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
 
 import { AuthStatus, CheckTokenResponse, LoginResponse, User } from '../interfaces';
+import { RegisterUser } from '../interfaces/register-user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -85,4 +86,24 @@ export class AuthService {
     this._authStatus.set( AuthStatus.notAuthenticated );
   }
 
+
+  register( body: RegisterUser) {
+
+    const url = `${ this.baseUrl }/auth/register`;
+
+    return this.http.post<LoginResponse>(url, body)
+      .pipe(
+        map( () => {
+          return true
+        }),
+        catchError( err => throwError( () => {
+          if( Array.isArray(err.error.message)) {
+            return err.error.message[0];
+          }
+          return err.error.message;
+        }))
+      )
+
+
+  }
 }

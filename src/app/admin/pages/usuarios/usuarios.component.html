@@ -1,0 +1,101 @@
+
+<h1>Mantenimiento de Usuarios</h1>
+<p-table
+      #dt2
+      [value]="usuarios"
+      dataKey="id"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      [loading]="loading"
+      [paginator]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [globalFilterFields]="['dni', 'nombre', 'apellidos', 'fechaNacimiento', 'telefono', 'correo', 'estado', 'direccion']"
+      [tableStyle]="{ 'min-width': '75rem' }"
+      >
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="dni" style="width:12%">DNI <p-sortIcon field="dni" /> </th>
+          <th pSortableColumn="nombre" style="width:12%">Nombre <p-sortIcon field="nombre" /></th>
+          <th pSortableColumn="apellidos" style="width:12%">Apellidos <p-sortIcon field="apellidos" /></th>
+          <th pSortableColumn="fechaNacimiento" style="width:12%">Fecha Nacimiento <p-sortIcon field="fechaNacimiento" /></th>
+          <th pSortableColumn="telefono" style="width:12%">Teléfono <p-sortIcon field="telefono" /></th>
+          <th pSortableColumn="correo" style="width:12%">Correo Electronico <p-sortIcon field="correo" /></th>
+          <th pSortableColumn="estado" style="width:7%">Estado <p-sortIcon field="estado" /></th>
+          <th pSortableColumn="direccion" style="width:12%">Dirección <p-sortIcon field="direccion" /></th>
+          <th pSortableColumn="Operaciones" style="width:6%">Operaciones</th>
+        </tr>
+        <tr>
+          <th>
+            <p-columnFilter type="text" field="dni"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="nombre"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="apellidos"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="fechaNacimiento"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="telefono"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="correo"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="boolean" field="estado"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="direccion"></p-columnFilter>
+          </th>
+          <th style="text-align: center;">
+            <p-button routerLink="/admin/usuario" icon="pi pi-user-plus" [text]="true" [rounded]="true" severity="info" />
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-usuario>
+        <tr>
+          <td>
+            {{ usuario.dni }}
+          </td>
+          <td>
+            {{ usuario.nombre }}
+          </td>
+          <td>
+            {{ usuario.apellidos }}
+          </td>
+          <td>
+            {{ usuario.fechaNacimiento }}
+          </td>
+          <td>
+            {{ usuario.telefono }}
+          </td>
+          <td>
+            {{ usuario.correo }}
+          </td>
+          <td>
+            <i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': usuario.estado, 'text-red-500 pi-times-circle': !usuario.estado }"></i>
+          </td>
+          <td>
+            {{ usuario.direccion }}
+          </td>
+          <td>
+            <p-button [routerLink]="['/admin/usuario/', usuario._id]" icon="pi pi-user-edit" [rounded]="true" [text]="true" severity="info" />
+            <p-button (click)="onDelete(usuario._id)" icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" />
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="8">No customers found.</td>
+        </tr>
+    </ng-template>
+
+</p-table>
+
+<!-- Dialogos -->
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+

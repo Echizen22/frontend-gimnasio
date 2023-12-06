@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardModule ),
   },
   {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then( m => m.AdminModule ),
+  },
+  {
     path: '404',
     component: Error404PageComponent,
   },

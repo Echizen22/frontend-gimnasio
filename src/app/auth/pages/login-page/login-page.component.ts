@@ -18,8 +18,8 @@ export class LoginPageComponent {
 
 
   public myForm: FormGroup = this.fb.group({
-    dni:      ['Y4091612', Validators.required,],
-    password: ['12345', Validators.required ],
+    dni:      ['Y4091612'],
+    password: ['12345'],
   });
 
 

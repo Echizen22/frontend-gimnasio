@@ -1,4 +1,5 @@
-<div class="mb-2">
+<div id="layout">
+
   <p-menubar [model]="items">
 
     <ng-template pTemplate="start">
@@ -8,9 +9,10 @@
     </ng-template>
 
   </p-menubar>
+
+  <div id="content">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
 
-<div>
-  <router-outlet />
-</div>

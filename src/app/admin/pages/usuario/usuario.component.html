@@ -1,7 +1,9 @@
+<!-- <h1>Mantenimiento de usuario</h1> -->
+<p-toast></p-toast>
 <div class="grid justify-content-center">
-  <div class="sm:col-11 md:col-8 lg:col-6 mt-5 p-4 border-1 ">
-    <h1>Register</h1>
-    <form [formGroup]="myForm" (ngSubmit)="doSubmit()">
+  <div class="sm:col-11 md:col-8 lg:col-6 mt-5 p-4 ">
+    <h2>Definición de usuario</h2>
+    <form [formGroup]="myForm" (ngSubmit)="doSubmit()" >
 
       <div class="field">
         <label>Dni</label>
@@ -9,7 +11,10 @@
         <span *ngIf="myForm.get('dni')?.hasError('required')" class="text-red-500">
           El dni es requerido
         </span>
-        <span *ngIf="myForm.get('dni')?.hasError('required') ? false:  myForm.get('dni')?.hasError('dniInvalido')"  class="text-red-500">
+        <span *ngIf="myForm.get('dni')?.hasError('required') ? false:  myForm.get('dni')?.hasError('dniInvalido') " class="text-red-500">
+          Formato de dni invalido, introduzca un dni valido
+        </span>
+        <span *ngIf="myForm.get('dni')?.hasError('required') ? false:  myForm.get('dni')?.hasError('dniNoValido') " class="text-red-500">
           Dni no valido, debe introducir un dni valido
         </span>
       </div>
@@ -17,20 +22,14 @@
       <div class="field">
         <label>Nombre</label>
         <input pInputText formControlName="nombre" class="text-base p-2 w-full"  type="text">
-        <span *ngIf="isValidField('nombre')"  class="text-red-500">
-          El nombre es requerido
-        </span>
       </div>
 
       <div class="field">
         <label>Apellidos</label>
         <input pInputText formControlName="apellidos" class="text-base p-2 w-full"  type="text">
-        <span *ngIf="isValidField('apellidos')"  class="text-red-500">
-          Los apellidos son requeridos
-        </span>
       </div>
 
-      <div class="field">
+      <div class="field" *ngIf="!id">
         <label>Contraseña</label><br>
         <input type="password" [feedback]="false" pPassword class="w-full" formControlName="password" >
         <span *ngIf="myForm.get('password')?.hasError('required')"  class="text-red-500">
@@ -41,34 +40,24 @@
         </span>
       </div>
 
+      <div class="field" *ngIf="id">
+        <label>Estado</label><br>
+        <p-inputSwitch formControlName="estado"></p-inputSwitch>
+      </div>
+
       <div class="field ">
         <label>Fecha Nacimiento</label><br>
         <p-calendar formControlName="fechaNacimiento" [showIcon]="true" name="fechaNac" ></p-calendar><br>
-        <span *ngIf="isValidField('fechaNacimiento')"  class="text-red-500">
-          La fecha de nacimiento es requerida
-        </span>
       </div>
 
       <div class="field">
         <label>telefono</label><br>
         <p-inputNumber formControlName="telefono" [useGrouping]="false" /><br>
-        <span *ngIf="myForm.get('telefono')?.hasError('required')" class="text-red-500">
-          El telefono es requerido
-        </span>
-        <span *ngIf="myForm.get('telefono')?.hasError('required') ? false:  myForm.get('telefono')?.hasError('pattern')"  class="text-red-500">
-          Se debe introducir un teléfono valido
-        </span>
       </div>
 
       <div class="field">
         <label>Correo Electronico</label>
         <input pInputText  class="text-base p-2 w-full" formControlName="correo"  type="text">
-        <span *ngIf="myForm.get('correo')?.hasError('required')" class="text-red-500">
-          El correo electronico es requerido
-        </span>
-        <span *ngIf="myForm.get('correo')?.hasError('required') ? false:  myForm.get('correo')?.hasError('pattern')"  class="text-red-500">
-          Se debe introducir un correo electronico valido
-        </span>
       </div>
 
       <div class="field">
@@ -82,18 +71,20 @@
       <div class="field">
         <label>Dirección</label>
         <input pInputText class="text-base p-2 w-full" formControlName="direccion"  type="text">
-        <span *ngIf="isValidField('direccion')"  class="text-red-500">
-          La dirección es requerida
-        </span>
+      </div>
+
+      <div class="field ">
+        <label>Fecha Inicio</label><br>
+        <p-calendar formControlName="fechaIni" [showIcon]="true" name="fechaIni" ></p-calendar><br>
       </div>
 
       <div>
         <button
          pButton
-         [disabled]=" myForm.touched  || !myForm.valid "
+         [disabled]=" myForm.pristine  || !myForm.valid "
          name="enviar"
          type="submit"
-         label="Enviar">
+         label="Guardar">
         </button>
       </div>
 
@@ -101,3 +92,8 @@
   </div>
 </div>
 
+<p-button
+  label="Regresar al listado de Usuarios"
+  icon="pi pi-angle-double-left"
+  [routerLink]="['/admin/usuarios']"
+/>

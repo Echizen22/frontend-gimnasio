@@ -5,8 +5,9 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNgModule } from '../shared/prime-ng/prime-ng.module';
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
@@ -19,7 +20,9 @@ import { PrimeNgModule } from '../shared/prime-ng/prime-ng.module';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    PrimeNgModule
+    PrimeNgModule,
+    FormsModule,
+    CalendarModule,
   ]
 })
 export class AuthModule { }
