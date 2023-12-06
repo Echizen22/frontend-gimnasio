@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from '../../Services/Admin.service';
-import { Table } from 'primeng/table';
+import { AdminService } from '../../services/admin.service';
 import { Usuario } from '../../interfaces/usuarios';
 import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 

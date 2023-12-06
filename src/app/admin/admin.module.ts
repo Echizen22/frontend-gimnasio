@@ -8,7 +8,7 @@ import { AdminLayoutPageComponent } from './pages/admin-layout-page/admin-layout
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { DateTimeFormatPipe } from './pipes/unix-to-dateTime.pipe';
 import { DateFormatPipe } from './pipes/unix-to-date.pipe';
-import { AdminService } from './Services/Admin.service';
+import { AdminService } from './services/admin.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 

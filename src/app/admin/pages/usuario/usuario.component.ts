@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ValidatorsService } from 'src/app/shared/validators/Validators.service';
-import { AdminService } from '../../Services/Admin.service';
+import { AdminService } from '../../services/admin.service';
 import { Usuario } from '../../interfaces/usuarios';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
