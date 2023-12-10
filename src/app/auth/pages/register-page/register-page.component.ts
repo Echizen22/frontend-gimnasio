@@ -3,7 +3,6 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { RegisterUser } from '../../interfaces/register-user.interface';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { ValidatorsService } from 'src/app/shared/validators/Validators.service';
 import { MessageService } from 'primeng/api';
 import { AdminService } from 'src/app/admin/services/admin.service';

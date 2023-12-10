@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
-import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
@@ -41,8 +40,6 @@ export class LoginPageComponent {
         },
         error: (message) => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
-          // Swal.fire('Error', message, 'error' );
-          // console.log(message);
         }
       })
 
