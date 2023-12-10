@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { RegisterUser } from '../../interfaces/register-user.interface';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { MessageService } from 'primeng/api';
 import { AdminService } from 'src/app/admin/services/admin.service';
 import { Plan } from 'src/app/admin/interfaces/plan';
 import { DropdownPlan } from 'src/app/shared/interfaces/dropdown-plan.interface';
+import { DropdownChangeEvent } from 'primeng/dropdown';
 
 @Component({
   templateUrl: './register-page.component.html',
@@ -18,6 +19,9 @@ export class RegisterPageComponent implements OnInit {
 
   myForm!: UntypedFormGroup;
   selectPlan: DropdownPlan[] = [];
+  planes!: Plan[];
+
+  visualPlan?: Plan;
 
 
   constructor(
@@ -51,6 +55,8 @@ export class RegisterPageComponent implements OnInit {
     this.adminService.doGet<Plan[]>('/plan', { responseType: 'json'} )
       .subscribe({
         next: (values) => {
+
+          this.planes = values;
 
           for (const value of values ) {
             const { _id:id, nombre } = value;
@@ -90,7 +96,10 @@ export class RegisterPageComponent implements OnInit {
       this.authService.register(newUser)
         .subscribe({
           next: () => {
-            this.router.navigateByUrl('/auth/login')
+            this.messageService.add({ severity: 'info', summary: 'Confirmado', detail: 'Usuario registrado con exito' });
+            setTimeout(() => {
+              this.router.navigateByUrl('/auth/login')
+            }, 1500)
           },
           error: (message) => {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
@@ -103,6 +112,12 @@ export class RegisterPageComponent implements OnInit {
 
   isValidField( field: string ) {
     return this.validatorsService.isValidField( this.myForm, field );
+  }
+
+
+  changePlan(event: DropdownChangeEvent) {
+    const id = event.value.id;
+    this.visualPlan = this.planes.find( (plan) =>  plan._id === id );
   }
 
 }

@@ -11,7 +11,9 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private primengConfig: PrimeNGConfig) {}
+  constructor(
+    private primengConfig: PrimeNGConfig,
+    ) {}
 
   ngOnInit() {
       this.primengConfig.ripple = true;
@@ -39,10 +41,11 @@ export class AppComponent implements OnInit {
       case AuthStatus.authenticated:
 
         if( this.authService.currentUser()?.superUsuario ) {
-          this.router.navigateByUrl('/admin/welcome');
+            this.router.navigateByUrl('/admin/welcome');
+
         } else {
-          this.router.navigateByUrl('/home/inicio');
-        }
+            this.router.navigateByUrl('/home/inicio');
+          }
         return;
 
       case AuthStatus.notAuthenticated:

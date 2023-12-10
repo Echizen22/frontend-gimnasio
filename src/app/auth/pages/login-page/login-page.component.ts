@@ -32,9 +32,17 @@ export class LoginPageComponent {
         next: () => {
 
           if(this.authService.currentUser()?.superUsuario) {
-            this.router.navigateByUrl('/admin');
+            this.messageService.add({ severity: 'success', summary: 'Inicio de Sesión Exitoso', detail: 'Bienvenido Administrador' });
+            setTimeout(() => {
+              this.router.navigateByUrl('/admin');
+            }, 2000)
+
           } else {
-            this.router.navigateByUrl('/home');
+
+            this.messageService.add({ severity: 'success', summary: 'Inicio de Sesión Exitoso', detail: 'Bienvenido de nuevo' });
+            setTimeout(() => {
+              this.router.navigateByUrl('/home');
+            }, 2000)
           }
 
         },

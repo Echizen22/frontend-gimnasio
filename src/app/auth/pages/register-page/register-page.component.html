@@ -1,5 +1,5 @@
 <div class="grid justify-content-center">
-  <div class="sm:col-11 md:col-8 lg:col-6 mt-5 p-4  ">
+  <div class="sm:col-11 md:col-7 lg:col-6 mt-5 p-4  ">
     <h1 style="text-align: center;">Registrarse</h1>
     <form [formGroup]="myForm" (ngSubmit)="doSubmit()" class="registration-form">
 
@@ -54,7 +54,7 @@
 
       <div class="field ">
         <label>Plan</label><br>
-        <p-dropdown formControlName="plan" [options]="selectPlan" optionLabel="nombre" placeholder="Selecciona un plan"></p-dropdown><br>
+        <p-dropdown formControlName="plan" (onChange)="changePlan($event)" [options]="selectPlan" optionLabel="nombre" placeholder="Selecciona un plan"></p-dropdown><br>
         <span *ngIf="isValidField('plan')"  class="text-red-500">
           El plan es requerido
         </span>
@@ -116,7 +116,11 @@
 
     </form>
   </div>
+
+  <app-visual-plan [visualPlan]="visualPlan" class="lg:col-3 sm:col-11 md:col-3 p-4 mt-5 border rounded-md shadow-md bg-white"></app-visual-plan>
+
 </div>
 
 <!-- Dialogs -->
 <p-toast></p-toast>
+

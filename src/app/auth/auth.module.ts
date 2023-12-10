@@ -9,13 +9,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNgModule } from '../shared/prime-ng/prime-ng.module';
 import { CalendarModule } from 'primeng/calendar';
 import { MessageService } from 'primeng/api';
+import { VisualPlanComponent } from './components/visual-plan/visual-plan.component';
 
 
 @NgModule({
   declarations: [
     LoginPageComponent,
     RegisterPageComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    VisualPlanComponent
   ],
   imports: [
     CommonModule,
