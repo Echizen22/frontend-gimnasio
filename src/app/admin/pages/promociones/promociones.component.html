@@ -1,1 +1,89 @@
-<p>promociones works!</p>
+<h1>Mantenimiento de Promociones</h1>
+<p-table
+      #dt2
+      [value]="promociones"
+      dataKey="id"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      [loading]="loading"
+      [paginator]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [globalFilterFields]="['codigo', 'nombre', 'urlImagen', 'descuento', 'fechaIni', 'fechaFin']"
+      [tableStyle]="{ 'min-width': '75rem' }"
+      >
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="codigo" style="width:10%">Código <p-sortIcon field="codigo" /> </th>
+          <th pSortableColumn="nombre" style="width:20%">Nombre <p-sortIcon field="nombre" /></th>
+          <th style="width:20%">Imagen </th>
+          <th pSortableColumn="descuento" style="width:10%">Descuento<p-sortIcon field="descuento" /></th>
+          <th pSortableColumn="fechaIni" style="width:22%">Fecha Inicio<p-sortIcon field="fechaIni" /></th>
+          <th pSortableColumn="fechaFin" style="width:22%">Fecha Fin<p-sortIcon field="fechaFin" /></th>
+          <th pSortableColumn="Operaciones" style="width:6%">
+            Operaciones
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <p-columnFilter type="text" field="codigo"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="nombre"></p-columnFilter>
+          </th>
+          <th>
+            <!-- <p-columnFilter type="text" field="urlImagen"></p-columnFilter> -->
+          </th>
+          <th>
+            <p-columnFilter type="text" field="descuento"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="fechaIni"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="fechaFin"></p-columnFilter>
+          </th>
+          <th style="text-align: center;">
+            <p-button routerLink="/admin/promocion" icon="pi pi-user-plus" [text]="true" [rounded]="true" severity="info" />
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-promocion>
+        <tr>
+          <td>
+            {{ promocion.codigo }}
+          </td>
+          <td>
+            {{ promocion.nombre }}
+          </td>
+          <td>
+            <img alt="Imagen no encontrada" src="../../../../assets/images/{{ promocion.urlImagen }}" width="72" style="vertical-align: middle" />
+            <!-- <span class="ml-1 vertical-align-middle">{{ promocion.nombre }}</span> -->
+          </td>
+          <td>
+            {{ promocion.descuento }}%
+          </td>
+          <td>
+            {{ promocion.fechaIni }}
+          </td>
+          <td>
+            {{ promocion.fechaFin }}
+          </td>
+          <td>
+            <p-button [routerLink]="['/admin/promocion/', promocion._id]" icon="pi pi-user-edit" [rounded]="true" [text]="true" severity="info" />
+            <p-button (click)="onDelete(promocion._id)"  icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" />
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="6">Promociones no encontradas.</td>
+        </tr>
+    </ng-template>
+
+</p-table>
+
+<!-- Dialogos -->
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+

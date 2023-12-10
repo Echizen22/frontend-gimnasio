@@ -1,6 +1,7 @@
-<div class="grid justify-content-center">
+
+<div id="contenido" class="grid justify-content-center">
   <div class="sm:col-11 md:col-6 lg:col-3 mt-5 p-4 border-1">
-    <h1>Login</h1>
+    <h1>Iniciar Sesión</h1>
     <form [formGroup]="myForm" (ngSubmit)="login()">
 
       <div class="field">
@@ -41,4 +42,5 @@
   </div>
 </div>
 
-
+<!-- Dialogs -->
+<p-toast></p-toast>

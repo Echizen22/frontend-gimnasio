@@ -7,6 +7,7 @@ export interface Usuario {
   apellidos:       string;
   password:        string;
   fechaNacimiento: string | Date;
+  plan?:            string;
   telefono:        number;
   correo:          String;
   repetirCorreo:   String;

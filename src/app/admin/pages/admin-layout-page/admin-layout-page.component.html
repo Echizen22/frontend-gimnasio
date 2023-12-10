@@ -3,9 +3,14 @@
   <p-menubar [model]="items">
 
     <ng-template pTemplate="start">
-      <a href="/home/inicio">
+      <a routerLink="/home/inicio">
         <img src="../../../../assets/images/logoMYGYM.png" alt="mi imagen" height="60" class="mr-2">
       </a>
+    </ng-template>
+
+    <ng-template pTemplate="end">
+      <p-menu #menu [model]="itemsLogin" [popup]="true"></p-menu>
+      <p-button icon="pi pi-bars" (click)="menu.toggle($event)" [text]="true" [plain]="true"></p-button>
     </ng-template>
 
   </p-menubar>

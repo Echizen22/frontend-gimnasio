@@ -7,6 +7,8 @@ import { InicioPageComponent } from './pages/inicio-page/inicio-page.component';
 import { PorQueMyGymComponent } from './pages/por-que-my-gym/por-que-my-gym.component';
 import { UbicacionComponent } from './pages/ubicacion/ubicacion.component';
 import { PrimeNgModule } from '../shared/prime-ng/prime-ng.module';
+import { AuthService } from '../auth/services/auth.service';
+import { AuthModule } from '../auth/auth.module';
 
 
 
@@ -20,7 +22,8 @@ import { PrimeNgModule } from '../shared/prime-ng/prime-ng.module';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    PrimeNgModule
+    PrimeNgModule,
+    AuthModule
   ],
 })
 export class HomeModule { }

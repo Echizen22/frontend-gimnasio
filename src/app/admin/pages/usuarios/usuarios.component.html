@@ -20,7 +20,7 @@
           <th pSortableColumn="apellidos" style="width:12%">Apellidos <p-sortIcon field="apellidos" /></th>
           <th pSortableColumn="fechaNacimiento" style="width:12%">Fecha Nacimiento <p-sortIcon field="fechaNacimiento" /></th>
           <th pSortableColumn="telefono" style="width:12%">Teléfono <p-sortIcon field="telefono" /></th>
-          <th pSortableColumn="correo" style="width:12%">Correo Electronico <p-sortIcon field="correo" /></th>
+          <th pSortableColumn="correo" style="width:12%">Correo Electrónico <p-sortIcon field="correo" /></th>
           <th pSortableColumn="estado" style="width:7%">Estado <p-sortIcon field="estado" /></th>
           <th pSortableColumn="direccion" style="width:12%">Dirección <p-sortIcon field="direccion" /></th>
           <th pSortableColumn="Operaciones" style="width:6%">Operaciones</th>
@@ -36,7 +36,7 @@
             <p-columnFilter type="text" field="apellidos"></p-columnFilter>
           </th>
           <th>
-            <p-columnFilter type="text" field="fechaNacimiento"></p-columnFilter>
+            <p-columnFilter type="date" field="fechaNacimiento"></p-columnFilter>
           </th>
           <th>
             <p-columnFilter type="text" field="telefono"></p-columnFilter>
@@ -67,7 +67,7 @@
             {{ usuario.apellidos }}
           </td>
           <td>
-            {{ usuario.fechaNacimiento }}
+            {{ usuario.fechaNacimiento | dateFormat }}
           </td>
           <td>
             {{ usuario.telefono }}
@@ -89,7 +89,7 @@
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <tr>
-            <td colspan="8">No customers found.</td>
+            <td colspan="8">Usuarios no encontrados.</td>
         </tr>
     </ng-template>
 

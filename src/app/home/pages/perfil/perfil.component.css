@@ -1,0 +1,39 @@
+
+
+.contenedor {
+  max-width: 70%;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+#titulo {
+  background-color: lightgrey;
+  width: 70%;
+  color: black;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+#misDatos {
+  width: 70%;
+  margin-top: 20px;
+  border: 10px solid lightgrey;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+table {
+  width: 100%;
+}
+
+tr > td:last-child {
+  font-weight: bold;
+}

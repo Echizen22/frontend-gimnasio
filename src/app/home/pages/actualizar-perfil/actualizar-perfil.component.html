@@ -1,0 +1,55 @@
+
+<div id="contenido" class="grid justify-content-center">
+  <div class="sm:col-11 md:col-8 lg:col-6 mt-5 p-4 ">
+    <h2>Actualizar mis datos</h2>
+    <form [formGroup]="myForm" (ngSubmit)="doSubmit()" >
+
+      <div class="field">
+        <label>Dirección</label>
+        <input pInputText class="text-base p-2 w-full" formControlName="direccion"  type="text">
+      </div>
+
+      <div class="field">
+        <label>Correo Electronico</label>
+        <input pInputText  class="text-base p-2 w-full" formControlName="correo"  type="text">
+      </div>
+
+      <div class="field">
+        <label>Repetir Correo Electronico</label>
+        <input pInputText class="text-base p-2 w-full" formControlName="repetirCorreo"  type="text">
+        <span *ngIf="isValidField('repetirCorreo')"  class="text-red-500">
+          El correo no coincide
+        </span>
+      </div>
+
+      <div class="field">
+        <label>telefono</label><br>
+        <p-inputNumber formControlName="telefono" [useGrouping]="false" /><br>
+      </div>
+
+      <div>
+         <p-button
+          label="Actualizar"
+          type="submit"
+          [disabled]="myForm.pristine  || !myForm.valid"
+          [text]="true"
+          [raised]="true" />
+      </div>
+
+
+    </form>
+  </div>
+</div>
+
+<p-button
+  label="Regresar al perfil"
+  icon="pi pi-angle-double-left"
+  [text]="true"
+  [raised]="true"
+  [routerLink]="['/home/perfil']"
+/>
+
+
+
+<!-- Dialogs -->
+<p-toast></p-toast>

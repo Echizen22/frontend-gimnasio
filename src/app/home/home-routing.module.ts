@@ -10,9 +10,11 @@ const routes: Routes = [
     path: '',
     component: LayoutPageComponent,
     children: [
-      { path: 'inicio', component: InicioPageComponent },
+      { path: 'inicio', loadChildren: () => import('./pages/inicio-page/inicio-page.module').then( m => m.InicioPageModule )},
       { path: 'por-que-my-gym', component: PorQueMyGymComponent },
       { path: 'ubicacion', component: UbicacionComponent },
+      { path: 'perfil', loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilModule )},
+      { path: 'actualizar-perfil/:id', loadChildren: () => import('./pages/actualizar-perfil/actualizar-perfil.module').then( m => m.ActualizarPerfilModule )},
       { path: '**', redirectTo: 'inicio' },
     ]
   }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-inicio-page',
@@ -12,7 +13,5 @@ export class InicioPageComponent {
     'assets/images/tu_eliges.png',
     // Agrega más rutas de imágenes según sea necesario
   ];
-
-
 
 }

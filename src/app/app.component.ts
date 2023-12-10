@@ -37,7 +37,12 @@ export class AppComponent implements OnInit {
         return;
 
       case AuthStatus.authenticated:
-        this.router.navigateByUrl('/home/inicio');
+
+        if( this.authService.currentUser()?.superUsuario ) {
+          this.router.navigateByUrl('/admin/welcome');
+        } else {
+          this.router.navigateByUrl('/home/inicio');
+        }
         return;
 
       case AuthStatus.notAuthenticated:

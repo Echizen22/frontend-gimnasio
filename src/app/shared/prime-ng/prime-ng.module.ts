@@ -20,15 +20,16 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputSwitchModule } from 'primeng/inputswitch';
-
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MenuModule } from 'primeng/menu';
+import { DividerModule } from 'primeng/divider';
+import { AccordionModule } from 'primeng/accordion';
 
 
 
 
 @NgModule({
   exports: [
-
-
     MenubarModule,
     ButtonModule,
     CardModule,
@@ -47,7 +48,11 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     ToastModule,
     ConfirmDialogModule,
     CheckboxModule,
-    InputSwitchModule
+    InputSwitchModule,
+    InputTextareaModule,
+    MenuModule,
+    DividerModule,
+    AccordionModule,
 
   ]
 })

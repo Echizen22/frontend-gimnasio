@@ -14,9 +14,13 @@ const routes: Routes = [
       { path: 'usuarios', loadChildren: () => import('./pages/usuarios/usuarios.module').then( m => m.UsuariosModule ) },
 
       // Promocion
+      { path: 'promocion', loadChildren: () => import('./pages/promocion/promocion.module').then( m => m.PromocionModule )},
+      { path: 'promocion/:id', loadChildren: () => import('./pages/promocion/promocion.module').then( m => m.PromocionModule )},
       { path: 'promociones', loadChildren: () => import('./pages/promociones/promociones.module').then( m => m.PromocionesModule )},
 
       // Plan
+      { path: 'plan', loadChildren: () => import('./pages/plan/plan.module').then( m => m.PlanModule )},
+      { path: 'plan/:id', loadChildren: () => import('./pages/plan/plan.module').then( m => m.PlanModule )},
       { path: 'planes', loadChildren: () => import('./pages/planes/planes.module').then( m => m.PlanesModule )},
 
 

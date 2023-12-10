@@ -26,6 +26,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     FormsModule,
     ReactiveFormsModule
   ],
+  exports: [ DateFormatPipe ],
   providers: [ AdminService, ConfirmationService, MessageService]
 })
 export class AdminModule { }

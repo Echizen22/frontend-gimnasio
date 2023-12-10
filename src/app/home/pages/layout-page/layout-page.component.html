@@ -2,7 +2,7 @@
   <p-menubar [model]="items">
 
     <ng-template pTemplate="start">
-      <a href="/home/inicio">
+      <a  routerLink="/">
         <img src="../../../../assets/images/logoMYGYM.png" alt="mi imagen" height="60" class="mr-2">
       </a>
     </ng-template>
@@ -10,6 +10,11 @@
     <ng-template pTemplate="end">
       <p-button label="Apuntate" [text]="true" [plain]="true" routerLink="/auth/register"></p-button>
       <p-button label="My Gym" [text]="true" [plain]="true" routerLink="/auth/login"></p-button>
+    </ng-template>
+
+    <ng-template *ngIf="isLogin" pTemplate="end">
+      <p-menu #menu [model]="itemsLogin" [popup]="true"></p-menu>
+      <p-button [label]="userLogin" icon="pi pi-bars" (click)="menu.toggle($event)" [text]="true" [plain]="true"></p-button>
     </ng-template>
 
   </p-menubar>
@@ -21,3 +26,17 @@
 <div>
   <router-outlet></router-outlet>
 </div>
+
+
+<footer class="footer-container mt-3">
+  <div class="social-media">
+    <p>Conéctese con nosotros en las redes sociales:</p>
+    <div class="social-icons">
+      <a href="https://instagram.com" target="_blank" class="social-icon"><span class="pi pi-instagram"></span></a>
+      <a href="https://facebook.com" target="_blank" class="social-icon"><span class="pi pi-facebook"></span></a>
+    </div>
+  </div>
+  <div class="rights">
+    <p>© 2023 Tu Empresa. Todos los derechos reservados.</p>
+  </div>
+</footer>

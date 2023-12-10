@@ -1,0 +1,38 @@
+
+
+.descuento {
+  width: 96%;
+  height: auto;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+
+.faq-container {
+  max-width: 1000px; /* Establece un ancho máximo para el contenedor principal */
+  margin: 0 auto; /* Centra el contenedor principal en la pantalla */
+}
+
+h2 {
+  margin-left: 8px; /* Alinea el encabezado con el margen izquierdo */
+}
+
+.accordion-container {
+  margin-top: 16px; /* Agrega espacio entre el encabezado y el acordeón */
+}
+
+p-accordion {
+  width: 100%; /* Haz que el acordeón ocupe todo el ancho del contenedor */
+}
+
+.additional-content {
+  margin-top: 16px; /* Agrega espacio entre el acordeón y el contenido adicional */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.additional-content img {
+  max-width: 40%; /* Ajusta el ancho máximo de la imagen según tus preferencias */
+  height: auto;
+}

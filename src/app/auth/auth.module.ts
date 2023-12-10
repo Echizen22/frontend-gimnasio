@@ -8,6 +8,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNgModule } from '../shared/prime-ng/prime-ng.module';
 import { CalendarModule } from 'primeng/calendar';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { CalendarModule } from 'primeng/calendar';
     PrimeNgModule,
     FormsModule,
     CalendarModule,
-  ]
+  ],
+  providers: [ MessageService ]
 })
 export class AuthModule { }

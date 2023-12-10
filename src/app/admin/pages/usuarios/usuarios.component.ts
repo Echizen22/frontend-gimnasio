@@ -50,7 +50,7 @@ export class UsuariosComponent implements OnInit {
   onDelete(id: string) {
     this.confirmationService.confirm({
       message: 'Esta seguro que quiere eliminar el usuario?',
-      header: 'Confirmación de eliminarción',
+      header: 'Confirmación de eliminación',
       icon: 'pi pi-info-circle',
       accept: () => {
         console.log(id);
@@ -84,10 +84,11 @@ export class UsuariosComponent implements OnInit {
     .subscribe({
       next: (valor) => {
 
+
         this.usuarios = valor;
         this.loading = false;
         this.usuarios.forEach((usuario) => {
-          usuario.fechaNacimiento = this.getFormatFecha(new Date(<Date>usuario.fechaNacimiento));
+          usuario.fechaNacimiento = new Date(<Date>usuario.fechaNacimiento);
           usuario.fechaIni = this.getFormatFecha(new Date(<Date>usuario.fechaIni));
           usuario.estado === 'A' ? usuario.estado = true: usuario.estado = false;
 

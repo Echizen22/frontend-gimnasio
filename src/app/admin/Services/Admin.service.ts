@@ -1,6 +1,7 @@
 import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { environment } from 'src/app/environments/environments';
 
 @Injectable({
@@ -9,10 +10,12 @@ import { environment } from 'src/app/environments/environments';
 export class AdminService {
 
   private readonly baseUrl: string = environment.baseUrl;
-
   constructor(
-    private readonly http: HttpClient
-  ) { }
+    private readonly http: HttpClient,
+    private readonly authService: AuthService,
+  ) {
+    this.authService.checkAuthStatus();
+  }
 
   doGet<T>(url: string, options: {
     headers?: HttpHeaders;

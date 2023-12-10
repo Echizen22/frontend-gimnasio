@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   templateUrl: './login-page.component.html',
@@ -15,11 +16,12 @@ export class LoginPageComponent {
   private fb          = inject( FormBuilder );
   private authService = inject( AuthService );
   private router      = inject( Router );
+  private messageService = inject( MessageService );
 
 
   public myForm: FormGroup = this.fb.group({
-    dni:      ['Y4091612'],
-    password: ['12345'],
+    dni:      [],
+    password: [],
   });
 
 
@@ -28,9 +30,18 @@ export class LoginPageComponent {
 
     this.authService.login( dni, password )
       .subscribe({
-        next: () => this.router.navigateByUrl('/home/inicio'),
+        next: () => {
+
+          if(this.authService.currentUser()?.superUsuario) {
+            this.router.navigateByUrl('/admin');
+          } else {
+            this.router.navigateByUrl('/home');
+          }
+
+        },
         error: (message) => {
-          Swal.fire('Error', message, 'error' );
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
+          // Swal.fire('Error', message, 'error' );
           // console.log(message);
         }
       })

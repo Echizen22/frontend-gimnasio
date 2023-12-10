@@ -1,0 +1,82 @@
+
+<div class="contenedor">
+  <div id="titulo">
+    <h1>Hola {{user?.nombre}}</h1>
+    <p>Gestiona tu datos en My Gym, ¡cuándo,  <br> donde y como quieras!</p>
+  </div>
+
+  <div id="misDatos">
+    <div class="grid justify-content-center">
+      <div class="col">
+        <h2 style="text-align: center;">MIS DATOS</h2>
+        <a routerLink="/home/actualizar-perfil/{{user?._id}}">Actualizar mis datos</a>
+        <table class="mt-3" >
+          <tr>
+            <td>Nombre</td>
+            <td>{{ user?.nombre }}</td>
+          </tr>
+          <tr>
+            <td>Apellidos</td>
+            <td>{{ user?.apellidos }}</td>
+          </tr>
+          <tr>
+            <td>Fecha de nacimiento</td>
+            <td>{{ user?.fechaNacimiento | dateFormat }}</td>
+          </tr>
+          <tr>
+            <td>Dirección</td>
+            <td>{{ user?.direccion }}</td>
+          </tr>
+          <tr>
+            <td>E-mail</td>
+            <td>{{ user?.correo }}</td>
+          </tr>
+          <tr>
+            <td>Teléfono</td>
+            <td>{{ user?.telefono }}</td>
+          </tr>
+          <tr>
+            <td>Fecha de inicio</td>
+            <td>{{ user?.fechaIni | dateFormat }}</td>
+          </tr>
+
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container mx-auto my-8">
+    <h2 class="text-3xl text-center mb-4">Consejos</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="mb-4">
+            <p-card header="Variabilidad en el Entrenamiento" class="p-card-rounded">
+                <p class="m-0 text-lg md:text-base">
+                    Evita la monotonía incorporando variedad en tu rutina de ejercicios. Cambiar tu programa de entrenamiento regularmente no solo mantiene el interés, sino que también desafía diferentes grupos musculares y evita el sobreentrenamiento. Prueba nuevas clases, métodos de entrenamiento o actividades para mantener la frescura en tu rutina.
+                </p>
+            </p-card>
+        </div>
+
+        <div class="mb-4">
+            <p-card header="Escucha a tu Cuerpo y Prioriza la Recuperación" class="p-card-rounded">
+                <p class="m-0 text-lg md:text-base">
+                    Presta atención a las señales de tu cuerpo. Si sientes fatiga excesiva, dolor persistente o agotamiento, es importante permitirte días de descanso y recuperación. El descanso adecuado es crucial para evitar lesiones y promover el crecimiento muscular. Considera también técnicas de recuperación como estiramientos, masajes, y asegúrate de dormir lo suficiente.
+                </p>
+            </p-card>
+        </div>
+
+        <div class="mb-4">
+            <p-card header="Combina el Ejercicio con una Nutrición Equilibrada" class="p-card-rounded">
+                <p class="m-0 text-lg md:text-base">
+                    El ejercicio y la nutrición van de la mano. Asegúrate de alimentarte adecuadamente para respaldar tus objetivos de fitness. Consume una variedad de alimentos nutritivos que proporcionen los macronutrientes y micronutrientes necesarios para la recuperación y el rendimiento. Mantén un equilibrio entre proteínas, carbohidratos, grasas saludables, vitaminas y minerales.
+                </p>
+            </p-card>
+        </div>
+    </div>
+  </div>
+
+
+
+
+</div>

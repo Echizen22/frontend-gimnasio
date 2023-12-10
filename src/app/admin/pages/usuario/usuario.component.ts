@@ -5,6 +5,8 @@ import { ValidatorsService } from 'src/app/shared/validators/Validators.service'
 import { AdminService } from '../../services/admin.service';
 import { Usuario } from '../../interfaces/usuarios';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { DropdownPlan } from 'src/app/shared/interfaces/dropdown-plan.interface';
+import { Plan } from '../../interfaces/plan';
 
 @Component({
   selector: 'app-usuario',
@@ -14,6 +16,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 export class UsuarioComponent implements OnInit {
 
   myForm!: UntypedFormGroup;
+  selectPlan: DropdownPlan[] = [];
 
   // Parámetro de url
   id = '';
@@ -30,14 +33,15 @@ export class UsuarioComponent implements OnInit {
   ngOnInit(): void {
     this.myForm = this.fb.group({
       dni: [, [ Validators.required, this.validatorsService.dniValidator() ] ],
-      nombre: [],
-      apellidos: [],
+      nombre: [ , [Validators.required]],
+      apellidos: [, [Validators.required]],
       password: [, [ Validators.required, Validators.minLength(6) ] ],
       fechaNacimiento: [],
+      plan: [ ,[ Validators.required ]],
       telefono: [],
-      correo: [],
-      repetirCorreo: [],
-      direccion: [],
+      correo: [, [Validators.required]],
+      repetirCorreo: [, [Validators.required]],
+      direccion: [, [Validators.required]],
       fechaIni: [],
     },{
       validators: [
@@ -46,6 +50,22 @@ export class UsuarioComponent implements OnInit {
     });
 
     this.id = this.route.snapshot.paramMap.get('id')!;
+
+    if( !this.id ) {
+      this.adminService.doGet<Plan[]>('/plan', { responseType: 'json'} )
+      .subscribe({
+        next: (values) => {
+
+          for (const value of values ) {
+            const { _id:id, nombre } = value;
+            this.selectPlan.push({ id, nombre });
+            }
+          }
+        }
+      )
+    }
+
+
 
     this.refresh();
 
@@ -73,9 +93,10 @@ export class UsuarioComponent implements OnInit {
 
 
 
-      if( !this.id ) {
 
-        this.adminService.doPost('/usuario', newUser, { responseType: 'json'} )
+      if( !this.id ) {
+        newUser.plan = this.myForm.value.plan.id;
+        this.adminService.doPost<Usuario>('/usuario', newUser, { responseType: 'json'} )
         .subscribe({
           next: () => {
 
@@ -92,7 +113,6 @@ export class UsuarioComponent implements OnInit {
         });
 
       } else {
-
         const { password:_, ...rest} = newUser;
 
         // this.estado = this.myForm.value.estado === true ? 'A': 'B';
@@ -110,7 +130,7 @@ export class UsuarioComponent implements OnInit {
               this.messageService.add({ severity: 'error', summary: 'Error', detail: value.error.message })
             }
 
-          })
+        })
 
       }
 
@@ -134,8 +154,11 @@ export class UsuarioComponent implements OnInit {
 
       this.myForm.addControl('estado', this.fb.control(''));
       this.myForm.removeControl('password');
+      this.myForm.removeControl('plan');
       this.myForm.get('password')?.clearValidators();
       this.myForm.get('password')?.updateValueAndValidity();
+      this.myForm.get('plan')?.clearValidators();
+      this.myForm.get('plan')?.updateValueAndValidity();
 
 
       // Recuperamos los datos del usuario

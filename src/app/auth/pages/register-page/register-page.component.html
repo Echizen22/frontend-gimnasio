@@ -1,15 +1,18 @@
 <div class="grid justify-content-center">
-  <div class="sm:col-11 md:col-8 lg:col-6 mt-5 p-4 border-1 ">
-    <h1>Register</h1>
-    <form [formGroup]="myForm" (ngSubmit)="doSubmit()">
+  <div class="sm:col-11 md:col-8 lg:col-6 mt-5 p-4  ">
+    <h1 style="text-align: center;">Registrarse</h1>
+    <form [formGroup]="myForm" (ngSubmit)="doSubmit()" class="registration-form">
 
       <div class="field">
         <label>Dni</label>
         <input pInputText formControlName="dni"  class="text-base p-2 w-full" type="text">
-        <span *ngIf="myForm.get('dni')?.hasError('required')" class="text-red-500">
+        <span *ngIf="myForm.get('dni')?.hasError('required') && myForm.controls['dni'].touched" class="text-red-500">
           El dni es requerido
         </span>
-        <span *ngIf="myForm.get('dni')?.hasError('required') ? false:  myForm.get('dni')?.hasError('dniInvalido')"  class="text-red-500">
+        <span *ngIf="myForm.get('dni')?.hasError('required') ? false:  myForm.get('dni')?.hasError('dniInvalido') && myForm.controls['dni'].touched" class="text-red-500">
+          Formato de dni invalido, introduzca un dni valido
+        </span>
+        <span *ngIf="myForm.get('dni')?.hasError('required') ? false:  myForm.get('dni')?.hasError('dniNoValido') && myForm.controls['dni'].touched" class="text-red-500">
           Dni no valido, debe introducir un dni valido
         </span>
       </div>
@@ -33,10 +36,10 @@
       <div class="field">
         <label>Contraseña</label><br>
         <input type="password" [feedback]="false" pPassword class="w-full" formControlName="password" >
-        <span *ngIf="myForm.get('password')?.hasError('required')"  class="text-red-500">
+        <span *ngIf="myForm.get('password')?.hasError('required') && myForm.controls['dni'].touched"  class="text-red-500">
           La contraseña es requerida
         </span>
-        <span *ngIf="myForm.get('password')?.hasError('required') ? false:  myForm.get('password')?.hasError('minlength')"   class="text-red-500">
+        <span *ngIf="myForm.get('password')?.hasError('required') ? false:  myForm.get('password')?.hasError('minlength') && myForm.controls['password'].touched"   class="text-red-500">
           La contraseña debe tener un mínimo de 6 caracteres de longitud
         </span>
       </div>
@@ -49,11 +52,19 @@
         </span>
       </div>
 
+      <div class="field ">
+        <label>Plan</label><br>
+        <p-dropdown formControlName="plan" [options]="selectPlan" optionLabel="nombre" placeholder="Selecciona un plan"></p-dropdown><br>
+        <span *ngIf="isValidField('plan')"  class="text-red-500">
+          El plan es requerido
+        </span>
+      </div>
+
       <div class="field">
-        <label>telefono</label><br>
+        <label>Teléfono</label><br>
         <p-inputNumber formControlName="telefono" [useGrouping]="false" /><br>
-        <span *ngIf="myForm.get('telefono')?.hasError('required')" class="text-red-500">
-          El telefono es requerido
+        <span *ngIf="isValidField('telefono')" class="text-red-500">
+          El teléfono es requerido
         </span>
         <span *ngIf="myForm.get('telefono')?.hasError('required') ? false:  myForm.get('telefono')?.hasError('pattern')"  class="text-red-500">
           Se debe introducir un teléfono valido
@@ -61,18 +72,18 @@
       </div>
 
       <div class="field">
-        <label>Correo Electronico</label>
+        <label>Correo Electrónico</label>
         <input pInputText  class="text-base p-2 w-full" formControlName="correo"  type="text">
-        <span *ngIf="myForm.get('correo')?.hasError('required')" class="text-red-500">
-          El correo electronico es requerido
+        <span *ngIf="myForm.get('correo')?.hasError('required') && myForm.controls['dni'].touched" class="text-red-500">
+          El correo electrónico es requerido
         </span>
         <span *ngIf="myForm.get('correo')?.hasError('required') ? false:  myForm.get('correo')?.hasError('pattern')"  class="text-red-500">
-          Se debe introducir un correo electronico valido
+          Se debe introducir un correo electrónico valido
         </span>
       </div>
 
       <div class="field">
-        <label>Repetir Correo Electronico</label>
+        <label>Repetir Correo Electrónico</label>
         <input pInputText class="text-base p-2 w-full" formControlName="repetirCorreo"  type="text">
         <span *ngIf="isValidField('repetirCorreo')"  class="text-red-500">
           El correo no coincide
@@ -87,17 +98,25 @@
         </span>
       </div>
 
-      <div>
-        <button
-         pButton
-         [disabled]=" myForm.touched  || !myForm.valid "
-         name="enviar"
-         type="submit"
-         label="Enviar">
-        </button>
+
+      <div class="field">
+
+        <p-button
+          label="Enviar"
+          type="submit"
+          [disabled]="myForm.pristine  || !myForm.valid"
+          [text]="true"
+          [raised]="true" />
+
+      </div>
+
+      <div class="text-center">
+        <a routerLink="/auth/login">Ir a Iniciar Sesión</a>
       </div>
 
     </form>
   </div>
 </div>
 
+<!-- Dialogs -->
+<p-toast></p-toast>

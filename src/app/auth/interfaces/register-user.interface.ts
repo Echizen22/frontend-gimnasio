@@ -7,6 +7,7 @@ export interface RegisterUser {
   apellidos: string;
   password: string;
   fechaNacimiento: Date;
+  plan: string;
   telefono: number;
   correo: string;
   repetirCorreo: string;

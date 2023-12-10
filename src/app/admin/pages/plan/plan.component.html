@@ -1,0 +1,63 @@
+
+<div class="grid justify-content-center">
+  <div class="sm:col-11 md:col-8 lg:col-6 mt-5 p-4 ">
+    <h2>Definición de plan</h2>
+    <form [formGroup]="myForm" (ngSubmit)="doSubmit()" >
+
+
+      <div class="field">
+        <label>Código</label><br>
+        <p-inputNumber formControlName="codigo" [useGrouping]="false" /><br>
+        <span *ngIf="isValidField('codigo')" class="text-red-500">
+          El código es requerido
+        </span>
+      </div>
+
+      <div class="field">
+        <label>Nombre</label>
+        <input pInputText formControlName="nombre" class="text-base p-2 w-full" maxlength="50"  type="text" />
+        <span *ngIf="isValidField('nombre')" class="text-red-500">
+          El nombre es requerido
+        </span>
+      </div>
+
+      <div class="field">
+        <label>Precio</label><br>
+        <p-inputNumber formControlName="precio" mode="currency" currency="EUR" locale="es-ES"  /><br>
+        <span *ngIf="isValidField('precio')" class="text-red-500">
+          El precio es requerido
+        </span>
+      </div>
+
+      <div class="field">
+        <label>Descripción</label><br>
+        <textarea rows="5" style="width: 100%;" cols="30" maxlength="400" pInputTextarea formControlName="descripcion" [autoResize]="true" >
+        </textarea><br>
+        <span *ngIf="isValidField('descripcion')" class="text-red-500">
+          La descripción es requerida
+        </span>
+      </div>
+
+      <div>
+        <button
+         pButton
+         [disabled]=" myForm.pristine  || !myForm.valid "
+         name="enviar"
+         type="submit"
+         label="Guardar">
+        </button>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+
+<p-button
+  label="Regresar al listado de Planes"
+  icon="pi pi-angle-double-left"
+  [routerLink]="['/admin/planes']"
+/>
+
+<!-- Dialogs -->
+<p-toast></p-toast>

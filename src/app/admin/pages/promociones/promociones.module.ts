@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PromocionesRoutingModule } from './promociones-routing.module';
 import { PromocionesComponent } from './promociones.component';
+import { PrimeNgModule } from 'src/app/shared/prime-ng/prime-ng.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { PromocionesComponent } from './promociones.component';
   ],
   imports: [
     CommonModule,
-    PromocionesRoutingModule
+    PromocionesRoutingModule,
+    PrimeNgModule
   ]
 })
 export class PromocionesModule { }

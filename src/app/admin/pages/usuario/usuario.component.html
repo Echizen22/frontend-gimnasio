@@ -1,38 +1,44 @@
 <!-- <h1>Mantenimiento de usuario</h1> -->
-<p-toast></p-toast>
+
 <div class="grid justify-content-center">
   <div class="sm:col-11 md:col-8 lg:col-6 mt-5 p-4 ">
-    <h2>Definición de usuario</h2>
+    <h2>Definición de un usuario</h2>
     <form [formGroup]="myForm" (ngSubmit)="doSubmit()" >
 
       <div class="field">
         <label>Dni</label>
         <input pInputText formControlName="dni"  class="text-base p-2 w-full" type="text">
-        <span *ngIf="myForm.get('dni')?.hasError('required')" class="text-red-500">
+        <span *ngIf="myForm.get('dni')?.hasError('required') && myForm.controls['dni'].touched" class="text-red-500">
           El dni es requerido
         </span>
-        <span *ngIf="myForm.get('dni')?.hasError('required') ? false:  myForm.get('dni')?.hasError('dniInvalido') " class="text-red-500">
+        <span *ngIf="myForm.get('dni')?.hasError('required') ? false:  myForm.get('dni')?.hasError('dniInvalido') && myForm.controls['dni'].touched" class="text-red-500">
           Formato de dni invalido, introduzca un dni valido
         </span>
-        <span *ngIf="myForm.get('dni')?.hasError('required') ? false:  myForm.get('dni')?.hasError('dniNoValido') " class="text-red-500">
+        <span *ngIf="myForm.get('dni')?.hasError('required') ? false:  myForm.get('dni')?.hasError('dniNoValido') && myForm.controls['dni'].touched" class="text-red-500">
           Dni no valido, debe introducir un dni valido
         </span>
       </div>
 
       <div class="field">
         <label>Nombre</label>
-        <input pInputText formControlName="nombre" class="text-base p-2 w-full"  type="text">
+        <input pInputText formControlName="nombre" maxlength="15" class="text-base p-2 w-full"  type="text">
+        <span *ngIf="isValidField('nombre')"  class="text-red-500">
+          El nombre es requerido
+        </span>
       </div>
 
       <div class="field">
         <label>Apellidos</label>
         <input pInputText formControlName="apellidos" class="text-base p-2 w-full"  type="text">
+        <span *ngIf="isValidField('apellidos')"  class="text-red-500">
+          Los apellidos son requeridos
+        </span>
       </div>
 
       <div class="field" *ngIf="!id">
         <label>Contraseña</label><br>
         <input type="password" [feedback]="false" pPassword class="w-full" formControlName="password" >
-        <span *ngIf="myForm.get('password')?.hasError('required')"  class="text-red-500">
+        <span *ngIf="myForm.get('password')?.hasError('required') && myForm.controls['password'].touched"  class="text-red-500">
           La contraseña es requerida
         </span>
         <span *ngIf="myForm.get('password')?.hasError('required') ? false:  myForm.get('password')?.hasError('minlength')"   class="text-red-500">
@@ -50,18 +56,29 @@
         <p-calendar formControlName="fechaNacimiento" [showIcon]="true" name="fechaNac" ></p-calendar><br>
       </div>
 
+      <div class="field " *ngIf="!id">
+        <label>Plan</label><br>
+        <p-dropdown formControlName="plan" [options]="selectPlan" optionLabel="nombre" placeholder="Selecciona un plan"></p-dropdown><br>
+        <span *ngIf="isValidField('plan')"  class="text-red-500">
+          El plan es requerido
+        </span>
+      </div>
+
       <div class="field">
-        <label>telefono</label><br>
+        <label>Teléfono</label><br>
         <p-inputNumber formControlName="telefono" [useGrouping]="false" /><br>
       </div>
 
       <div class="field">
-        <label>Correo Electronico</label>
+        <label>Correo Electrónico</label>
         <input pInputText  class="text-base p-2 w-full" formControlName="correo"  type="text">
+        <span *ngIf="isValidField('correo')"  class="text-red-500">
+          El correo electrónico es requerido
+        </span>
       </div>
 
       <div class="field">
-        <label>Repetir Correo Electronico</label>
+        <label>Repetir Correo Electrónico</label>
         <input pInputText class="text-base p-2 w-full" formControlName="repetirCorreo"  type="text">
         <span *ngIf="isValidField('repetirCorreo')"  class="text-red-500">
           El correo no coincide
@@ -97,3 +114,7 @@
   icon="pi pi-angle-double-left"
   [routerLink]="['/admin/usuarios']"
 />
+
+
+<!-- Dialogs -->
+<p-toast></p-toast>

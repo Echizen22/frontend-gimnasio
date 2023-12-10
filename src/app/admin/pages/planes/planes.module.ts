@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PlanesRoutingModule } from './planes-routing.module';
 import { PlanesComponent } from './planes.component';
+import { PrimeNgModule } from 'src/app/shared/prime-ng/prime-ng.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { PlanesComponent } from './planes.component';
   ],
   imports: [
     CommonModule,
-    PlanesRoutingModule
+    PlanesRoutingModule,
+    PrimeNgModule
   ]
 })
 export class PlanesModule { }

@@ -1,0 +1,72 @@
+
+<div class="grid justify-content-center">
+  <div class="sm:col-11 md:col-8 lg:col-6 mt-5 p-4 ">
+    <h2>Definición de una promoción</h2>
+    <form [formGroup]="myForm" (ngSubmit)="doSubmit()" >
+
+      <div class="field">
+        <label>Código</label><br>
+        <p-inputNumber formControlName="codigo" [useGrouping]="false" /><br>
+        <span *ngIf="isValidField('codigo')" class="text-red-500">
+          El código es requerido
+        </span>
+      </div>
+
+      <div class="field">
+        <label>Nombre</label>
+        <input pInputText formControlName="nombre" class="text-base p-2 w-full" maxlength="50"  type="text" />
+        <span *ngIf="isValidField('nombre')" class="text-red-500">
+          El nombre es requerido
+        </span>
+      </div>
+
+      <div class="field">
+        <label>Imagen</label>
+        <input pInputText formControlName="urlImagen" class="text-base p-2 w-full" maxlength="50"  type="text" />
+        <span *ngIf="isValidField('urlImagen')" class="text-red-500">
+          La imagen es requerida
+        </span>
+      </div>
+
+      <div class="field">
+        <label>Descuento</label><br>
+        <p-inputNumber formControlName="descuento" inputId="percent" suffix="%" [useGrouping]="false" /><br>
+        <span *ngIf="isValidField('descuento')" class="text-red-500">
+          El descuento es requerido
+        </span>
+      </div>
+
+      <div class="field ">
+        <label>Fecha Inicio</label><br>
+        <p-calendar formControlName="fechaIni" [showIcon]="true" name="fechaIni" ></p-calendar><br>
+      </div>
+
+      <div class="field ">
+        <label>Fecha Fin</label><br>
+        <p-calendar formControlName="fechaFin" [showIcon]="true" name="fechaFin" ></p-calendar><br>
+      </div>
+
+      <div>
+        <button
+         pButton
+         [disabled]=" myForm.pristine  || !myForm.valid "
+         name="enviar"
+         type="submit"
+         label="Guardar">
+        </button>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+
+<p-button
+  label="Regresar al listado de promociones"
+  icon="pi pi-angle-double-left"
+  [routerLink]="['/admin/promociones']"
+/>
+
+
+<!-- Dialogs -->
+<p-toast></p-toast>

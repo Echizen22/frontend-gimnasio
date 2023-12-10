@@ -5,6 +5,10 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ValidatorsService } from 'src/app/shared/validators/Validators.service';
+import { MessageService } from 'primeng/api';
+import { AdminService } from 'src/app/admin/services/admin.service';
+import { Plan } from 'src/app/admin/interfaces/plan';
+import { DropdownPlan } from 'src/app/shared/interfaces/dropdown-plan.interface';
 
 @Component({
   templateUrl: './register-page.component.html',
@@ -14,32 +18,50 @@ export class RegisterPageComponent implements OnInit {
 
 
   myForm!: UntypedFormGroup;
+  selectPlan: DropdownPlan[] = [];
 
 
   constructor(
     private readonly fb: UntypedFormBuilder,
     private readonly authService: AuthService,
+    private readonly adminService: AdminService,
     private readonly router: Router,
     private readonly validatorsService: ValidatorsService,
+    private readonly messageService: MessageService
   ) {}
 
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
-      dni: ['Y4091612', [ Validators.required, this.validatorsService.dniValidator() ] ],
-      nombre: ['Erixon', [ Validators.required ] ],
-      apellidos: ['Arce Justiniano', [ Validators.required ] ],
-      password: ['12345', [ Validators.required, Validators.minLength(6) ] ],
-      fechaNacimiento: [new Date('04/08/1999'), [ Validators.required ]],
-      telefono: [647890773, [ Validators.required, Validators.pattern(/^[6-9]\d{8}$/) ] ],
-      correo: ['erick@gmail.com', [ Validators.required, Validators.pattern( this.validatorsService.emailPattern ) ] ],
-      repetirCorreo: ['erick@gmail.com', [ Validators.required ] ],
-      direccion: ['C:/ Hernan Cortes 15', [ Validators.required ] ],
+      dni: [, [ Validators.required, this.validatorsService.dniValidator() ] ],
+      nombre: [, [ Validators.required ] ],
+      apellidos: [, [ Validators.required ] ],
+      password: [, [ Validators.required, Validators.minLength(6) ] ],
+      fechaNacimiento: [, [ Validators.required ]],
+      plan: [, [Validators.required]],
+      telefono: [, [ Validators.required, Validators.pattern(/^[6-9]\d{8}$/) ] ],
+      correo: [, [ Validators.required, Validators.pattern( this.validatorsService.emailPattern ) ] ],
+      repetirCorreo: [, [ Validators.required ] ],
+      direccion: [, [ Validators.required ] ],
     },{
       validators: [
         this.validatorsService.isFieldOneEqualFieldTwo('correo', 'repetirCorreo')
       ]
     });
+
+    this.adminService.doGet<Plan[]>('/plan', { responseType: 'json'} )
+      .subscribe({
+        next: (values) => {
+
+          for (const value of values ) {
+            const { _id:id, nombre } = value;
+            this.selectPlan.push({ id, nombre });
+          }
+        }
+      }
+    )
+
+
   }
 
 
@@ -54,6 +76,7 @@ export class RegisterPageComponent implements OnInit {
         apellidos: this.myForm.value.apellidos,
         password: this.myForm.value.password,
         fechaNacimiento: this.myForm.value.fechaNacimiento,
+        plan: this.myForm.value.plan.id,
         telefono: this.myForm.value.telefono,
         correo: this.myForm.value.correo,
         repetirCorreo: this.myForm.value.repetirCorreo,
@@ -63,13 +86,15 @@ export class RegisterPageComponent implements OnInit {
       };
 
 
+
+
       this.authService.register(newUser)
         .subscribe({
           next: () => {
             this.router.navigateByUrl('/auth/login')
           },
           error: (message) => {
-            Swal.fire('Error', message, 'error')
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
           }
         });
 
