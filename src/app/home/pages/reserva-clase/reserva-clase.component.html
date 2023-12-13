@@ -1,3 +1,6 @@
+<div class="p-3">
+  <h2>Reserva de clases</h2>
+</div>
 <div *ngFor="let clase of clases" class="clase-card" (click)="onSelectClase( clase._id )" [class.selected]="isClaseSelected(clase._id)">
   <h3>{{ clase.nombre }}</h3>
   <p>{{ clase.descripcion }}</p>
