@@ -9,6 +9,8 @@ import { UbicacionComponent } from './pages/ubicacion/ubicacion.component';
 import { PrimeNgModule } from '../shared/prime-ng/prime-ng.module';
 import { AuthService } from '../auth/services/auth.service';
 import { AuthModule } from '../auth/auth.module';
+import { ReservaClaseComponent } from './pages/reserva-clase/reserva-clase.component';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -17,7 +19,8 @@ import { AuthModule } from '../auth/auth.module';
     LayoutPageComponent,
     InicioPageComponent,
     PorQueMyGymComponent,
-    UbicacionComponent
+    UbicacionComponent,
+    ReservaClaseComponent
   ],
   imports: [
     CommonModule,
@@ -25,5 +28,6 @@ import { AuthModule } from '../auth/auth.module';
     PrimeNgModule,
     AuthModule
   ],
+  providers: [ MessageService ]
 })
 export class HomeModule { }

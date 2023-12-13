@@ -1,0 +1,74 @@
+
+<div class="grid justify-content-center">
+  <div class="sm:col-11 md:col-8 lg:col-6 mt-5 p-4 ">
+    <h2>Definición de Clase</h2>
+    <form [formGroup]="myForm" (ngSubmit)="doSubmit()" >
+
+
+      <div class="field">
+        <label>Nombre</label>
+        <input pInputText formControlName="nombre" class="text-base p-2 w-full" maxlength="50"  type="text" />
+        <span *ngIf="isValidField('nombre')" class="text-red-500">
+          El nombre es requerido
+        </span>
+      </div>
+
+
+      <div class="field">
+        <label>Descripción</label><br>
+        <textarea rows="5" style="width: 100%;" cols="30" maxlength="400" pInputTextarea formControlName="descripcion" [autoResize]="true" >
+        </textarea><br>
+      </div>
+
+      <div class="field">
+        <label>Horario</label>
+        <input pInputText formControlName="horario" class="text-base p-2 w-full" maxlength="50"  type="text" />
+        <span *ngIf="isValidField('horario')" class="text-red-500">
+          El horario es requerido
+        </span>
+      </div>
+
+      <div class="field">
+        <label>Duración (En minutos)</label><br>
+        <p-inputNumber formControlName="duracion" [useGrouping]="false" suffix=" minutos/o" /><br>
+        <span *ngIf="isValidField('duracion')" class="text-red-500">
+          La duracion es requerido
+        </span>
+      </div>
+
+      <div class="field">
+        <label>Instructor</label>
+        <input pInputText formControlName="instructor" class="text-base p-2 w-full" maxlength="50"  type="text" />
+      </div>
+
+      <div class="field ">
+        <label>Nivel de dificultad</label><br>
+        <p-dropdown formControlName="nivelDificultad" [options]="[{nombre: 'Principiante'}, {nombre: 'Intermedio'}, {nombre: 'Avanzado'}]" optionLabel="nombre" placeholder="Selecciona una dificultad"></p-dropdown><br>
+        <span *ngIf="isValidField('nivelDificultad')"  class="text-red-500">
+          El nivel de dificultad es requerido
+        </span>
+      </div>
+
+      <div>
+        <button
+         pButton
+         [disabled]=" myForm.pristine  || !myForm.valid "
+         name="enviar"
+         type="submit"
+         label="Guardar">
+        </button>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+
+<p-button
+  label="Regresar al listado de Clases"
+  icon="pi pi-angle-double-left"
+  [routerLink]="['/admin/clases']"
+/>
+
+<!-- Dialogs -->
+<p-toast></p-toast>

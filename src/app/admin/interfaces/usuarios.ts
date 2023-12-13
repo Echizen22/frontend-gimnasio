@@ -16,5 +16,6 @@ export interface Usuario {
   fechaIni:        string | Date;
   fechaFin?:        string | Date;
   superUsuario:    boolean;
+  clasesReservadas?:    string[];
 }
 

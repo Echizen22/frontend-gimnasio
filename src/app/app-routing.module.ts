@@ -5,13 +5,13 @@ import { Error404PageComponent } from './shared/pages/error404-page/error404-pag
 
 const routes: Routes = [
   {
-    path:'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomeModule ),
-  },
-  {
     path: 'auth',
     // canActivate: [ isNotAuthenticated ],
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
+  },
+  {
+    path:'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomeModule ),
   },
   {
     path: 'dashboard',

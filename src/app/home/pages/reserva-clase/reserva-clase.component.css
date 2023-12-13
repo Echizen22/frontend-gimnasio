@@ -1,0 +1,27 @@
+.clase-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.clase-card:hover {
+  background-color: #ffcccc;
+  border: 2px solid red;
+  box-shadow: 0 8px 16px rgba(255, 0, 0, 0.3);
+  transform: translateY(-5px); /* Agrega un desplazamiento hacia arriba para simular un efecto de levantamiento */
+}
+
+.clase-card.selected {
+  /* Estilos para la clase seleccionada */
+  background-color: #aaffaa; /* Cambia el color de fondo para indicar que está seleccionada */
+  border: 2px solid green; /* Cambia el borde para indicar que está seleccionada */
+}
+
+
+h3 {
+  margin-top: 0;
+}

@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Plan } from '../../interfaces/plan';
+import { Clase } from '../../interfaces/clase.interface';
 import { AdminService } from '../../services/admin.service';
 import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-planes',
-  templateUrl: './planes.component.html',
-  styleUrl: './planes.component.css'
+  selector: 'app-clases',
+  templateUrl: './clases.component.html',
+  styleUrl: './clases.component.css'
 })
-export class PlanesComponent implements OnInit {
+export class ClasesComponent implements OnInit  {
 
-  planes!: Plan[];
+
+  clases!: Clase[];
 
   statuses!: any[];
 
@@ -30,11 +31,11 @@ export class PlanesComponent implements OnInit {
 
   // Refresca la pagina
   refresh() {
-    this.adminService.doGet<Plan[]>('/plan', { responseType: 'json' })
+    this.adminService.doGet<Clase[]>('/clase', { responseType: 'json' })
     .subscribe({
       next: (valor) => {
 
-        this.planes = valor;
+        this.clases = valor;
         this.loading = false;
       },
       error: () =>{
@@ -45,14 +46,15 @@ export class PlanesComponent implements OnInit {
 
   }
 
-  // Método para eliminar un plan
+  // Método para eliminar un clase
   onDelete(id: string) {
     this.confirmationService.confirm({
-      message: 'Esta seguro que quiere eliminar el plan?',
+      message: 'Esta seguro que quiere eliminar la clase?',
       header: 'Confirmación de eliminación',
       icon: 'pi pi-info-circle',
       accept: () => {
-        this.adminService.doDelete(`/plan/${ id }`, { responseType: 'json' })
+        console.log(id);
+        this.adminService.doDelete(`/clase/${ id }`, { responseType: 'json' })
           .subscribe({
             next: () => {
               this.messageService.add({ severity: 'info', summary: 'Confirmado', detail: 'Eliminado con exito' });

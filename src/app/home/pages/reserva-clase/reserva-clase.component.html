@@ -1,0 +1,11 @@
+<div *ngFor="let clase of clases" class="clase-card" (click)="onSelectClase( clase._id )" [class.selected]="isClaseSelected(clase._id)">
+  <h3>{{ clase.nombre }}</h3>
+  <p>{{ clase.descripcion }}</p>
+  <p><strong>Horario:</strong> {{ clase.horario }}</p>
+  <p><strong>Duración:</strong> {{ clase.duracion }} minutos</p>
+  <p><strong>Instructor:</strong> {{ clase.instructor }}</p>
+  <p><strong>Nivel de Dificultad:</strong> {{ clase.nivelDificultad }}</p>
+</div>
+
+<!-- Dialogs -->
+<p-toast></p-toast>

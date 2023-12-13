@@ -11,4 +11,5 @@ export interface User {
   estado:          string;
   fechaIni:        string;
   superUsuario:    boolean;
+  clasesReservadas?: string[];
 }

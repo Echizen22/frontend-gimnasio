@@ -23,6 +23,10 @@ const routes: Routes = [
       { path: 'plan/:id', loadChildren: () => import('./pages/plan/plan.module').then( m => m.PlanModule )},
       { path: 'planes', loadChildren: () => import('./pages/planes/planes.module').then( m => m.PlanesModule )},
 
+      // Clase
+      { path: 'clase', loadChildren: () => import('./pages/clase/clase.module').then( m => m.ClaseModule )},
+      { path: 'clase/:id', loadChildren: () => import('./pages/clase/clase.module').then( m => m.ClaseModule )},
+      { path: 'clases', loadChildren: () => import('./pages/clases/clases.module').then( m => m.ClasesModule )},
 
       { path: '**', redirectTo: 'welcome' },
     ],

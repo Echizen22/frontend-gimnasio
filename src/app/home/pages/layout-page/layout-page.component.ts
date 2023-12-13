@@ -70,6 +70,11 @@ export class LayoutPageComponent implements OnInit {
         )
       }
 
+      if ( this.isLogin ) {
+        this.items.push({ label: 'Reserva clases' , routerLink: '/home/reserva-clase' })
+      }
+
+
     }
 
   }

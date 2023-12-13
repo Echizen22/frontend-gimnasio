@@ -96,7 +96,7 @@ export class RegisterPageComponent implements OnInit {
       this.authService.register(newUser)
         .subscribe({
           next: () => {
-            this.messageService.add({ severity: 'info', summary: 'Confirmado', detail: 'Usuario registrado con exito' });
+            this.messageService.add({ severity: 'success', summary: 'Confirmado', detail: 'Usuario registrado con exito' });
             setTimeout(() => {
               this.router.navigateByUrl('/auth/login')
             }, 1500)

@@ -4,6 +4,7 @@ import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { InicioPageComponent } from './pages/inicio-page/inicio-page.component';
 import { PorQueMyGymComponent } from './pages/por-que-my-gym/por-que-my-gym.component';
 import { UbicacionComponent } from './pages/ubicacion/ubicacion.component';
+import { ReservaClaseComponent } from './pages/reserva-clase/reserva-clase.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: 'ubicacion', component: UbicacionComponent },
       { path: 'perfil', loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilModule )},
       { path: 'actualizar-perfil/:id', loadChildren: () => import('./pages/actualizar-perfil/actualizar-perfil.module').then( m => m.ActualizarPerfilModule )},
+      { path: 'reserva-clase', component: ReservaClaseComponent },
       { path: '**', redirectTo: 'inicio' },
     ]
   }

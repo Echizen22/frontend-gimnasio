@@ -24,6 +24,7 @@ export class AdminLayoutPageComponent implements OnInit {
       { label: 'Usuarios', routerLink: '/admin/usuarios' },
       { label: 'Promociones', routerLink: '/admin/promociones' },
       { label: 'Planes', routerLink: '/admin/planes' },
+      { label: 'Clases', routerLink: '/admin/clases' },
     ];
 
 
